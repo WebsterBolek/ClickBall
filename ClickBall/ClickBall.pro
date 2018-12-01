@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
 QT += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
@@ -31,17 +31,22 @@ SOURCES += \
     wybor.cpp \
     ranking.cpp \
     zdrowie.cpp \
-    ball.cpp
+    ball.cpp \
+    dialog.cpp \
+    ballukosna.cpp
 
 HEADERS += \
     gra.h \
     wybor.h \
     ranking.h \
     zdrowie.h \
-    ball.h
+    ball.h \
+    dialog.h \
+    ballukosna.h
 
 FORMS += \
-        mainwindow.ui
+        mainwindow.ui \
+    dialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

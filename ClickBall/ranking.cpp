@@ -1,5 +1,6 @@
 #include "ranking.h"
 #include "gra.h"
+#include "ball.h"
 #include <QtSql>
 #include <QFont>
 

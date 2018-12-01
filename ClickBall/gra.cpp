@@ -2,8 +2,14 @@
 #include "wybor.h"
 #include "ranking.h"
 #include "zdrowie.h"
+#include "ball.h"
+#include "ballukosna.h"
+#include "dialog.h"
 #include <QGraphicsTextItem>
 #include <QGraphicsObject>
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include <QTimer>
 
 Gra::Gra(QWidget *parent){
     // Ustawianie rozdzielczosci
@@ -33,7 +39,7 @@ void Gra::displayMainMenu(){
     scene->addItem(titleText); //wstawienie
 
     // Wersja
-    QGraphicsTextItem* titleText2 = new QGraphicsTextItem(QString("Wersja demonstracyjna. Bardzo wczesna alfa!!"));
+    QGraphicsTextItem* titleText2 = new QGraphicsTextItem(QString("Wersja 0.49 (Update w przyszlosci)"));
     QFont titleFont2("Arial",14);
     titleText2->setFont(titleFont2);
 
@@ -72,14 +78,15 @@ void Gra::displayMainMenu(){
 void Gra::start(){
     // Czyszczenie sceny
     scene->clear();
-    drawRanking();
+    Spawntimer = new QTimer(this);
+    kulek = 0;
+    gramy();
 }
 
 void Gra::rank(){
     // Czyszczenie sceny
     scene->clear();
     // Odpalanie rankingu
-    //ranking = new Ranking();
     displayRank();
 }
 
@@ -112,6 +119,12 @@ void Gra::displayRank(){
 }
 
 //Rozpoczeniecie gry///////////////////////////////////////////////////////////////////////////
+void Gra::gramy()
+{
+    drawRanking();
+    QObject::connect(Spawntimer,SIGNAL(timeout()),this,SLOT(spawn()));
+    Spawntimer->start(1000);
+}
 //Ranking budowa
 void Gra::drawTabela(int x, int y, int width, int height, QColor color, double opacity){
     QGraphicsRectItem* Tabela = new QGraphicsRectItem(x,y,width,height);
@@ -140,7 +153,16 @@ void Gra::drawRanking(){
     int hyPos = 0;
     zdrowie->setPos(hxPos,hyPos);
     scene->addItem(zdrowie);
-
 }
 
 //Akcja gry
+void Gra::spawn(){
+    // Tworzy kule
+    Ball * ball = new Ball();
+    scene->addItem(ball);
+    kulek +=1;
+    if (kulek >= 5){
+        Ballukosna * ballukosna = new Ballukosna();
+        scene->addItem(ballukosna);
+    }
+}
