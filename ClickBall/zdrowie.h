@@ -4,6 +4,7 @@
 #include <QGraphicsTextItem>
 #include "ball.h"
 #include "ballukosna.h"
+#include "dialog.h"
 
 class Zdrowie: public QGraphicsTextItem{
 public:

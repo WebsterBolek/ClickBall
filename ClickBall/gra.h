@@ -30,6 +30,7 @@ public:
     Ball* ball;
     Ballukosna* ballukosna;
     QTimer* Spawntimer;
+
 public slots:
     //Akcje menu
     void start();
