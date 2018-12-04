@@ -36,7 +36,7 @@ Ballukosna::Ballukosna(QGraphicsItem *parent): QObject(), QGraphicsEllipseItem(p
         lot=1;
         connect(timer2,SIGNAL(timeout()),this,SLOT(move3()));
     }
-    timer2->start(20);
+    timer2->start(30);
 }
 
 void Ballukosna::mousePressEvent(QGraphicsSceneMouseEvent *event){

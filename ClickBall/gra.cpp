@@ -162,7 +162,10 @@ void Gra::spawn(){
     scene->addItem(ball);
     kulek +=1;
     if (kulek >= 5){
-        Ballukosna * ballukosna = new Ballukosna();
-        scene->addItem(ballukosna);
+        if (kulek % 2 == 0)
+        {
+            Ballukosna * ballukosna = new Ballukosna();
+            scene->addItem(ballukosna);
+        }
     }
 }
