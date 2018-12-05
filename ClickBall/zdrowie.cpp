@@ -12,7 +12,7 @@ Dialog* dialog;
 
 Zdrowie::Zdrowie(QGraphicsItem *parent): QGraphicsTextItem(parent){
     // Zerowanie rankingu
-    zdrowie = 5;
+    zdrowie = 3;
 
     setPlainText(QString("Zdrowie: ") + QString::number(zdrowie));
     setDefaultTextColor(Qt::white);
@@ -28,8 +28,7 @@ void Zdrowie::utrata(){
         dialog = new Dialog();
         dialog->show();
         gra->drawTabela(0,0,1024,768,Qt::color0,1);
-        gra->displayMainMenu();
-
+        //gra->displayMainMenu();
     }
     // Koniec gry
 }

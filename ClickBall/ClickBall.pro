@@ -32,7 +32,8 @@ SOURCES += \
     zdrowie.cpp \
     ball.cpp \
     dialog.cpp \
-    ballukosna.cpp
+    ballukosna.cpp \
+    dialogrank.cpp
 
 HEADERS += \
     gra.h \
@@ -41,11 +42,13 @@ HEADERS += \
     zdrowie.h \
     ball.h \
     dialog.h \
-    ballukosna.h
+    ballukosna.h \
+    dialogrank.h
 
 FORMS += \
         mainwindow.ui \
-    dialog.ui
+    dialog.ui \
+    dialogrank.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

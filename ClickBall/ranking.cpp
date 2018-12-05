@@ -4,9 +4,12 @@
 #include <QtSql>
 #include <QFont>
 
+extern int rankglobal=0;
+
 Ranking::Ranking(QGraphicsItem *parent): QGraphicsTextItem(parent){
     // Zerowanie rankingu
     ranking = 0;
+    rankglobal = 0;
 
     setPlainText(QString("Punkty: ") + QString::number(ranking));
     setDefaultTextColor(Qt::white);
@@ -15,6 +18,7 @@ Ranking::Ranking(QGraphicsItem *parent): QGraphicsTextItem(parent){
 
 void Ranking::punkt(){
     ranking++;
+    rankglobal=ranking;
     setPlainText(QString("Punkty: ") + QString::number(ranking));
 }
 

@@ -2,6 +2,7 @@
 #define RANKING_H
 
 #include <QGraphicsTextItem>
+#include "dialog.h"
 
 class Ranking: public QGraphicsTextItem{
 public:
