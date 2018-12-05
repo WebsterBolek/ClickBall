@@ -10,6 +10,9 @@
     <height>240</height>
    </rect>
   </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::ActionsContextMenu</enum>
+  </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
@@ -23,7 +26,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Nazwagracza</string>
+    <string/>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">
@@ -42,27 +45,27 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>30</x>
+     <x>20</x>
      <y>20</y>
-     <width>151</width>
+     <width>211</width>
      <height>41</height>
     </rect>
    </property>
    <property name="text">
-    <string>Jak się nazywasz?! Zdobyłeś:</string>
+    <string>Jak się nazywasz?! Liczba Twoich punktów:</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>200</x>
+     <x>240</x>
      <y>30</y>
      <width>47</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Liczba</string>
    </property>
   </widget>
  </widget>

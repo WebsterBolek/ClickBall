@@ -16,10 +16,14 @@ public:
     ~Dialog();
     QString nazwagracza;
     int a;
+    int Number;
+    void LiczbaPkt();
 
 private slots:
     void on_pushButton_clicked();
     void on_lineEdit_textEdited(const QString &arg1);
+
+    void on_Dialog_rejected();
 
 private:
     Ui::Dialog *ui;

@@ -14,6 +14,9 @@
 #include <QtSql>
 #include <QSqlDatabase>
 #include <QDebug>
+#include <QtCore>
+#include <QThread>
+#include <QCoreApplication>
 
 Dialogrank* dialogrank;
 
@@ -44,12 +47,12 @@ void Gra::displayMainMenu(){
     scene->addItem(titleText); //wstawienie
 
     // Wersja
-    QGraphicsTextItem* titleText2 = new QGraphicsTextItem(QString("Wersja 0.49 (Update w przyszlosci)"));
+    QGraphicsTextItem* titleText2 = new QGraphicsTextItem(QString("Pelna wersja 1.0"));
     QFont titleFont2("Arial",14);
     titleText2->setFont(titleFont2);
 
     // Ustawienie pozycji wersji
-    int bxPos = this->width()/2 - titleText->boundingRect().width()/2;
+    int bxPos = this->width()+6/2 - titleText->boundingRect().width()/2;
     int byPos = 660;
     titleText2->setPos(bxPos,byPos);
     scene->addItem(titleText2); //wstawienie
@@ -148,6 +151,14 @@ void Gra::spawn(){
         {
             Ballukosna * ballukosna = new Ballukosna();
             scene->addItem(ballukosna);
+            if (kulek >= 15)
+            {
+                if (kulek % 2 == 0)
+                {
+                    Ballukosna * ballukosna2 = new Ballukosna();
+                    scene->addItem(ballukosna2);
+                }
+            }
         }
     }
 }
@@ -166,10 +177,6 @@ void Gra::Baza()
     if(!wyniki.open())
     {
         qDebug()<<"Baza danych sie popsula";
-    }
-    else
-    {
-        qDebug()<<"Baza danych dziala";
     }
 
     //Tworzenie tabeli

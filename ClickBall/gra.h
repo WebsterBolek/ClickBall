@@ -10,7 +10,7 @@
 
 class Gra: public QGraphicsView{
     Q_OBJECT
-public:
+    public:
     // Konstruktor
     Gra(QWidget* parent=NULL);
 
