@@ -12,9 +12,14 @@ class Dialog : public QDialog
     Q_OBJECT
 
 public:
-    Dialog(QWidget* parent=NULL);
-    //explicit Dialog(QWidget *parent = nullptr);
+    explicit Dialog(QWidget *parent = nullptr);
     ~Dialog();
+    QString nazwagracza;
+    int a;
+
+private slots:
+    void on_pushButton_clicked();
+    void on_lineEdit_textEdited(const QString &arg1);
 
 private:
     Ui::Dialog *ui;

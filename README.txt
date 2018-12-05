@@ -8,3 +8,6 @@ Wersja 0.69
 -Czerwone kulki pojawiaja sie rzadziej
 -Baza danych sie tworzy
 -Okno dialogowe wyskakuje po przegranej grze(u¿ycie znaczników w przyszlosci)
+Wersja 0.99
+-Po przegranej grze gracz wpisuje swoj nick
+-Mozna spojrzec na tabele rankingu

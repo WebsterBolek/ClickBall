@@ -5,11 +5,17 @@
 #include "ball.h"
 #include "ballukosna.h"
 #include "dialog.h"
+#include "dialogrank.h"
 #include <QGraphicsTextItem>
 #include <QGraphicsObject>
 #include <QGraphicsScene>
 #include <QGraphicsView>
 #include <QTimer>
+#include <QtSql>
+#include <QSqlDatabase>
+#include <QDebug>
+
+Dialogrank* dialogrank;
 
 Gra::Gra(QWidget *parent){
     // Ustawianie rozdzielczosci
@@ -24,7 +30,6 @@ Gra::Gra(QWidget *parent){
     scene->setSceneRect(0,0,1024,768);
     setScene(scene);
 }
-
 // Menu -------------------------------------------------------------------
 void Gra::displayMainMenu(){
     // Tytul
@@ -84,38 +89,15 @@ void Gra::start(){
 }
 
 void Gra::rank(){
-    // Czyszczenie sceny
-    scene->clear();
     // Odpalanie rankingu
-    displayRank();
+    dialogrank = new Dialogrank();
+    dialogrank->show();
 }
 
 void Gra::back(){
     // Czyszczenie sceny
     scene->clear();
     displayMainMenu();
-}
-
-// Wyswietlenie menu rankingu ----------------------------------------------------------------
-void Gra::displayRank(){
-    // ranking
-    QGraphicsTextItem* titleText = new QGraphicsTextItem(QString("Ranking"));
-    QFont titleFont("times new roman",40);
-    titleText->setFont(titleFont);
-
-    // Ustawienie pozycji rankingu
-    int fxPos = this->width()/2 - titleText->boundingRect().width()/2;
-    int fyPos = 150;
-    titleText->setPos(fxPos,fyPos);
-    scene->addItem(titleText); //wstawienie
-
-    // Przycisk powrot
-    Wybor* powWybor = new Wybor(QString("Powrot"));
-    int exPos = this->width()/2 - powWybor->boundingRect().width()/2;
-    int eyPos = 425;
-    powWybor->setPos(exPos,eyPos);
-    connect(powWybor,SIGNAL(clicked()),this,SLOT(back()));
-    scene->addItem(powWybor);
 }
 
 //Rozpoczeniecie gry///////////////////////////////////////////////////////////////////////////
@@ -167,5 +149,67 @@ void Gra::spawn(){
             Ballukosna * ballukosna = new Ballukosna();
             scene->addItem(ballukosna);
         }
+    }
+}
+
+void Gra::Baza()
+{
+    //Baza danych//////////////////////////////////////////////////////
+    qDebug()<<("Otwieranie bazy");
+
+    //Tworzenie bazy danych
+    QSqlDatabase wyniki;
+    wyniki = QSqlDatabase::addDatabase("QSQLITE");
+    wyniki.setDatabaseName("wyniki.sqlite");
+
+    //Sprawdzanie czy sie udalo utworzyc
+    if(!wyniki.open())
+    {
+        qDebug()<<"Baza danych sie popsula";
+    }
+    else
+    {
+        qDebug()<<"Baza danych dziala";
+    }
+
+    //Tworzenie tabeli
+    QString query = "CREATE TABLE tab ("
+                    "NazwaGracza VARCHAR(20),"
+                    "WynikGracza INT);";
+
+    QSqlQuery qry;
+
+    if(!qry.exec(query))
+    {
+        qDebug()<<"Zapis";
+    }
+
+    if(zamkniecie == 1)
+    {
+        wyniki.close();
+        qDebug()<<"Zamkniete";
+    }
+
+    //addValues(1,"Bolek",10);
+    //Zamykanie bazy
+    //wyniki.close();
+    //Baza danych koniec///////////////////////////////////////
+}
+
+void Gra::addValues(QString nazwa, int wynik)
+{
+    QSqlQuery qry;
+
+    qry.prepare("INSERT INTO tab ("
+                "NazwaGracza,"
+                "WynikGracza)"
+                "VALUES (?,?);");
+
+    qry.addBindValue(nazwa);
+    qry.addBindValue(wynik);
+
+    if(!qry.exec())
+    {
+        qDebug()<<"Nie moge wpisac w tabele";
     }
 }

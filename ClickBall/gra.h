@@ -16,13 +16,15 @@ public:
 
     //Zmienne
     int kulek;
+    int zamkniecie;
 
     // Metoda wyswietlania menu
     void displayMainMenu();
 
     // Metody dla menu
-    void displayRank();
     void gramy();
+    void addValues(QString nazwa, int wynik);
+    void Baza();
 
     QGraphicsScene* scene;
     Ranking* ranking;
