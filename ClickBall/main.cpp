@@ -3,8 +3,40 @@
 #include <QDebug>
 #include <QtSql>
 #include <QSqlDatabase>
+#include <QtCore>
+#include <QThread>
+#include <QCoreApplication>
 
 Gra* gra;
+
+// Klasa watki
+class Worker : public QObject
+{
+    Q_OBJECT
+private slots:
+    void onTimeout()
+    {
+        qDebug()<<QThread::currentThreadId();
+    }
+};
+
+class Thread : public QThread
+{
+    Q_OBJECT
+
+private:
+    void run()
+    {
+        qDebug()<<currentThreadId();
+        QTimer timer;
+        Worker worker;
+        connect(&timer, SIGNAL(timeout()), &worker, SLOT(onTimeout()));
+        timer.start(1000);
+
+        exec();
+    }
+};
+//Watki//////////////////////
 
 int main(int argc, char *argv[])
 {

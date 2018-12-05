@@ -28,7 +28,6 @@ void Zdrowie::utrata(){
         dialog = new Dialog();
         dialog->show();
         gra->drawTabela(0,0,1024,768,Qt::color0,1);
-        //gra->displayMainMenu();
     }
     // Koniec gry
 }

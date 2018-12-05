@@ -20,6 +20,7 @@ Dialogrank::Dialogrank(QWidget *parent) :
     wys->select();
 
     ui->tableView->setModel(wys);
+    //wyniki.close();
 }
 
 Dialogrank::~Dialogrank()
@@ -29,6 +30,6 @@ Dialogrank::~Dialogrank()
 
 void Dialogrank::on_pushButton_clicked()
 {
-    delete this;
     wyniki.close();
+    delete this;
 }

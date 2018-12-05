@@ -2,6 +2,7 @@
 #include "ui_dialog.h"
 #include "gra.h"
 #include "ranking.h"
+#include <QLabel>
 
 extern int rankglobal;
 extern Gra * gra;
@@ -12,6 +13,7 @@ Dialog::Dialog(QWidget *parent) :
     ui(new Ui::Dialog)
 {
     ui->setupUi(this);
+    LiczbaPkt();
 }
 
 Dialog::~Dialog()
@@ -26,6 +28,7 @@ void Dialog::on_pushButton_clicked()
     gra->Baza();
     gra->addValues(nazwagracza,a);
     gra->zamkniecie=1;
+    gra->Baza();
     gra->displayMainMenu();
     delete this;
 }
@@ -33,4 +36,16 @@ void Dialog::on_pushButton_clicked()
 void Dialog::on_lineEdit_textEdited(const QString &arg1)
 {
     nazwagracza = arg1;
+}
+
+void Dialog::LiczbaPkt()
+{
+    Number=rankglobal;
+    ui->label_2->setText(QString::number(Number));
+}
+
+void Dialog::on_Dialog_rejected()
+{
+    gra->displayMainMenu();
+    delete this;
 }
